@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-black: #1e1e1e;
+  --main-gray: rgba(0, 0, 0, 0.2);
+  --main-indigo: rgba(88, 86, 214, 1);
+  --main-blue: rgba(0, 122, 255, 1);
+  --main-bg-w: rgba(255, 255, 255, 1);
+  --main-w: rgba(255, 255, 255, 1);
+  --text-gray: #707579;
+  background-color: #f2f2f7;
+}
+
+.mobile-body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.mobile-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.mobile-content {
+  height: calc(100% + 1px);
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/sf_pro_dipslay/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: normal; /* Regular uchun 400 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./assets/fonts/sf_pro_dipslay/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-weight: 500; /* Medium uchun */
+  font-style: normal;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.text_gray {
+  color: var(--text-gray);
+}
+
+.text-gradient-blue {
+  background: linear-gradient(
+    180deg,
+    var(--main-blue) 0%,
+    var(--main-indigo) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter_project_overlay {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.filter_project_overlay_none {
+  display: none;
+}
+
+.filter-project {
+  padding: 12px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 18px;
+  height: 56px;
+  border-radius: 16px;
+  cursor: pointer;
+  background: rgba(242, 242, 247, 1);
+  position: relative;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.hidden-checkbox {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid gray;
+  border-radius: 6px;
+  position: relative;
+  background-color: transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.custom-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.hidden-checkbox:checked ~ .checkbox-label {
+  background-color: #007bff; /* Checkbox checked holatda bo'lganda background color */
+}
+.hidden-checkbox:checked + .custom-checkbox {
+  background-color: white;
+  border-color: blue;
+}
+
+.hidden-checkbox:checked + .custom-checkbox::after {
+  display: block;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mytasks_nav {
+  position: relative;
+}
+
+.mytasks_nav::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 122, 255, 1) 0%,
+    rgba(88, 86, 214, 1) 100%
+  );
+}
+
+.single-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.duo-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.calc {
+  width: calc(100% - 60px);
+}

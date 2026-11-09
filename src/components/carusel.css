@@ -1,0 +1,12 @@
+.status-list,
+.overflow-y-scroll-carusel {
+  -ms-overflow-style: none;
+  scrollbar-width: 0;
+}
+.status-list::-webkit-scrollbar,
+.overflow-y-scroll-carusel::-webkit-scrollbar {
+  display: none;
+}
+.carusel-heighter {
+  height: calc(100vh - 100px);
+}
