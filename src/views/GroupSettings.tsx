@@ -113,11 +113,13 @@ const GroupSettings = () => {
     return <div>An error occurred: {error.message}</div>;
   }
 
+  const usersList = project?.users ?? [];
+
   return (
     <div className='p-3'>
       <div>
         {
-          (project.users.length && project.users.find((u: any) => u.telegram_id === String(user.telegram_id) && u.role === 'admin')) ? 
+          (usersList.length && usersList.find((u: any) => u.telegram_id === String(user.telegram_id) && u.role === 'admin')) ? 
           <div
             onClick={() => send_weekly_status_maual(Number(id))}
             className='h-[50px] flex items-center justify-center mt-4 mb-[42px] gap-2 rounded-xl bg-white  text-customBlue text-[14px] font-medium font-sfpro'
@@ -142,106 +144,102 @@ const GroupSettings = () => {
       </div>
 
       <div className='mt-2 flex flex-col bg-white rounded-custom-16 overflow-hidden'>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-todo' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("to_do")}
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-todo'
               type='checkbox'
               className='peer sr-only'
-              checked={project.statusNotificationPermissions.includes("todo")}
+              checked={statusNotificationPermissionsArray.includes("todo")}
               onChange={() =>
                 editNotification(
                   "todo",
-                  !project.statusNotificationPermissions.includes("todo"),
+                  !statusNotificationPermissionsArray.includes("todo"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-in-progress' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("in_progress")}
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-in-progress'
               type='checkbox'
               className='peer sr-only'
-              checked={project.statusNotificationPermissions.includes(
+              checked={statusNotificationPermissionsArray.includes(
                 "in_progress",
               )}
               onChange={() =>
                 editNotification(
                   "in_progress",
-                  !project.statusNotificationPermissions.includes(
+                  !statusNotificationPermissionsArray.includes(
                     "in_progress",
                   ),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
 
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-testing' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("testing")}
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-testing'
               type='checkbox'
               className='peer sr-only'
-              checked={project.statusNotificationPermissions.includes(
+              checked={statusNotificationPermissionsArray.includes(
                 "testing",
               )}
               onChange={() =>
                 editNotification(
                   "testing",
-                  !project.statusNotificationPermissions.includes("testing"),
+                  !statusNotificationPermissionsArray.includes("testing"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-completed' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 capitalize font-sfpro'>
               {t("completed")}
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-completed'
               type='checkbox'
               className='peer sr-only'
-              checked={project.statusNotificationPermissions.includes(
+              checked={statusNotificationPermissionsArray.includes(
                 "completed",
               )}
               onChange={() =>
                 editNotification(
                   "completed",
-                  !project.statusNotificationPermissions.includes("completed"),
+                  !statusNotificationPermissionsArray.includes("completed"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
       </div>
       <p className='text-[13px] font-normal text-customGrayDark px-3 mt-2'>
@@ -260,7 +258,7 @@ const GroupSettings = () => {
         </p>
       </div>
       <div className='mt-2 flex flex-col bg-white rounded-custom-16 overflow-hidden'>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-create' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("create_task")}
@@ -269,26 +267,25 @@ const GroupSettings = () => {
               /add
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-create'
               type='checkbox'
               className='peer sr-only'
-              checked={project.projectNotificationPermissions.includes(
+              checked={projectNotificationPermissionsArray.includes(
                 "create",
               )}
               onChange={() =>
                 editNotification(
                   "create",
-                  !project.projectNotificationPermissions.includes("create"),
+                  !projectNotificationPermissionsArray.includes("create"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-edit' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("edit_task")}
@@ -297,25 +294,24 @@ const GroupSettings = () => {
               /edit
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-edit'
               type='checkbox'
               className='peer sr-only'
-              checked={project.projectNotificationPermissions.includes("edit")}
+              checked={projectNotificationPermissionsArray.includes("edit")}
               onChange={() =>
                 editNotification(
                   "edit",
-                  !project.projectNotificationPermissions.includes("edit"),
+                  !projectNotificationPermissionsArray.includes("edit"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
 
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-archive' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("add_task_to_archive")}
@@ -324,26 +320,25 @@ const GroupSettings = () => {
               /archive
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-archive'
               type='checkbox'
               className='peer sr-only'
-              checked={project.projectNotificationPermissions.includes(
+              checked={projectNotificationPermissionsArray.includes(
                 "archive",
               )}
               onChange={() =>
                 editNotification(
                   "archive",
-                  !project.projectNotificationPermissions.includes("archive"),
+                  !projectNotificationPermissionsArray.includes("archive"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-delete' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("delete_task")}
@@ -352,24 +347,23 @@ const GroupSettings = () => {
               /delete
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-delete'
               type='checkbox'
               className='peer sr-only'
-              checked={project.projectNotificationPermissions.includes(
+              checked={projectNotificationPermissionsArray.includes(
                 "delete",
               )}
               onChange={() =>
                 editNotification(
                   "delete",
-                  !project.projectNotificationPermissions.includes("delete"),
+                  !projectNotificationPermissionsArray.includes("delete"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
       </div>
       <p className='text-[13px] font-normal text-customGrayDark px-3 mt-2'>
@@ -377,30 +371,29 @@ const GroupSettings = () => {
       </p>
 
       <div className='flex flex-col gap-[7px] bg-white rounded-custom-16 overflow-hidden mt-4'>
-        <label className='flex justify-between items-center py-[12px] px-4 bg-white'>
+        <label htmlFor='switch-comment' className='flex justify-between items-center py-[12px] px-4 bg-white'>
           <div>
             <p className='text-[17px] font-normal leading-6 font-sfpro'>
               {t("show_comments")}
             </p>
           </div>
-          <label className='relative inline-flex cursor-pointer items-center'>
+          <div className='relative inline-flex cursor-pointer items-center'>
             <input
-              id='switch2'
+              id='switch-comment'
               type='checkbox'
               className='peer sr-only'
-              checked={project.projectNotificationPermissions.includes(
+              checked={projectNotificationPermissionsArray.includes(
                 "comment",
               )}
               onChange={() =>
                 editNotification(
                   "comment",
-                  !project.projectNotificationPermissions.includes("comment"),
+                  !projectNotificationPermissionsArray.includes("comment"),
                 )
               }
             />
-            <label htmlFor='switch2' className='hidden'></label>
             <div className="peer h-[31px] w-[51px] rounded-full border bg-slate-200 after:absolute after:left-[2px]  after:top-0.5 after:h-[27px] after:w-[27px] after:rounded-full after:border after:border-stale-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-custom-gradient-blue peer-checked:after:translate-x-[20px] peer-checked:after:border-custom-gradient-blue "></div>
-          </label>
+          </div>
         </label>
       </div>
       <p className='py-[12px] px-4 pt-1 text-[13px] font-normal text-customGrayDark'>
@@ -409,16 +402,16 @@ const GroupSettings = () => {
 
       <p className='px-3 text-slate-500 uppercase text-[12px] mt-4 flex gap-2'>
         <span>{t("group_members")}</span>
-        <span className='text-customBlack'>{project.users.length}</span>
+        <span className='text-customBlack'>{usersList.length}</span>
       </p>
       <div className='mt-2 bg-white rounded-xl'>
-        {project.users.map((user: UserInterface, index: number) => (
+        {usersList.map((user: UserInterface, index: number) => (
           <User user={user} roles={project.project_roles} key={index} />
         ))}
         {isLoading && <Loader />}
       </div>
         {
-          (project.users.length && project.users.find((u: any) => u.telegram_id === String(user.telegram_id) && u.role === 'admin')) ? 
+          (usersList.length && usersList.find((u: any) => u.telegram_id === String(user.telegram_id) && u.role === 'admin')) ? 
         <div
           onClick={() => setIsOpenDelete(true)}
           className='h-[50px] flex items-center justify-center mt-4 mb-[42px] rounded-xl bg-gray-300 text-customRed text-[17px] font-medium font-sfpro'

@@ -51,7 +51,7 @@ const SettingsProjects = () => {
             key={index}
             group={group}
             handleUpdateGroup={handleUpdateGroup}
-            isSelected={selectedGroups[group.id] || group.is_selected}
+            isSelected={selectedGroups[group.id] ?? group.is_selected}
           />
         ))}
       </div>

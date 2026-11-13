@@ -8,7 +8,7 @@ export const useChangeNotificationAll = () => {
     mutationFn: ({ id, value }: { id: string | undefined; value: boolean }) =>
       notificationApi.changeNotification(id, value),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "groupProjectData" });
+      queryClient.invalidateQueries(["groupProjectData"]);
     },
   });
 
@@ -22,7 +22,7 @@ export const useChangeNotificationStatusAll = () => {
     mutationFn: ({ id, value }: { id: string | undefined; value: boolean }) =>
       notificationApi.changeNotificationStatus(id, value),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "groupProjectData" });
+      queryClient.invalidateQueries(["groupProjectData"]);
     },
   });
 

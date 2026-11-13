@@ -41,7 +41,8 @@ export const useEditNotification = (id: number) => {
     mutationFn: ({ type, value }: { type: string; value: boolean }) =>
       axiosClient.put(`/project/${id}/notification`, { type, value }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "groupProjectData" });
+      queryClient.invalidateQueries(["groupProjectData", String(id)]);
+      queryClient.invalidateQueries(["groupProjectData"]);
     },
   });
 };
