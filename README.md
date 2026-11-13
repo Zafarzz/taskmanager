@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# PlanJet (Task Manager)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Monorepo for PlanJet — a Telegram Mini App + Bot task and project manager.
 
-Currently, two official plugins are available:
+## Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `frontend/` — React + TypeScript + Vite + Tailwind CSS Telegram Mini App
+- `backend/` — NestJS + Prisma (PostgreSQL) + GramJS Telegram Bot API
+- `docker-compose.yml` — Local PostgreSQL database
 
-## Expanding the ESLint configuration
+## Local Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Install dependencies from the repository root:
+   ```bash
+   npm install
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. Configure environment files:
+   - Copy `backend/.env.example` to `backend/.env`
+   - Copy `frontend/.env.example` to `frontend/.env`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+3. Start PostgreSQL and run Prisma migrations:
+   ```bash
+   npm run db:up
+   npm run prisma:generate
+   npm run prisma:migrate
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4. Start both apps in development mode:
+   ```bash
+   npm run dev
+   ```
+
+## Individual Scripts
+
+- `npm run dev:backend` / `npm run dev:frontend`
+- `npm run build` (`build:backend` + `build:frontend`)
+- `npm run lint:backend` / `npm run lint:frontend`
